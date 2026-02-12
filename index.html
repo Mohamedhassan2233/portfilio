@@ -1,120 +1,733 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohamed Hassan | Hardware Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
-body{background:#0a0a0a;color:#fff;transition:.4s;overflow-x:hidden}
-header{display:flex;justify-content:space-between;align-items:center;padding:20px 8%;background:rgba(15,15,15,.9);backdrop-filter:blur(10px);position:fixed;width:100%;top:0;z-index:1000;border-bottom:1px solid #1f1f1f;transition:.3s}
-header h1{color:#00f7ff;letter-spacing:2px}
-nav a{margin-left:25px;text-decoration:none;color:#ccc;transition:.3s}
-nav a:hover{color:#00f7ff}
-section{padding:120px 8% 100px;min-height:100vh}
-.hero{display:flex;flex-direction:column;justify-content:center;animation:fadeIn 1.5s ease-in-out}
-.hero h2{font-size:50px;margin-bottom:20px}
-.hero span{color:#00f7ff;text-shadow:0 0 15px #00f7ff}
-.hero p{max-width:750px;line-height:1.7;color:#bbb;margin-bottom:30px}
-.btn{display:inline-block;padding:14px 25px;background:#00f7ff;color:#000;border-radius:30px;text-decoration:none;font-weight:600;transition:.3s;cursor:pointer}
-.btn:hover{transform:scale(1.05);box-shadow:0 0 25px #00f7ff}
-.projects,.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
-.card{background:#141414;padding:30px;border-radius:20px;transition:.4s;border:1px solid #1f1f1f;overflow:hidden;cursor:pointer;position:relative}
-.card:hover{transform:translateY(-10px);border-color:#00f7ff;box-shadow:0 0 20px rgba(0,247,255,.3)}
-.card h4{margin-bottom:15px}
-.card p{color:#aaa;font-size:14px;line-height:1.6}
-.progress-bar{background:#222;border-radius:20px;overflow:hidden;margin:10px 0}
-.progress-bar-inner{height:15px;background:#00f7ff;width:0%;border-radius:20px;transition:1s}
-.project-page{display:none;animation:fadeIn 1s}
-.project-page img{max-width:100%;margin:20px 0;border-radius:10px}
-.back-btn{margin-top:20px}
-.toggle-dark{position:fixed;bottom:25px;right:25px;padding:10px 15px;background:#00f7ff;color:#000;border:none;border-radius:20px;font-weight:600;cursor:pointer;z-index:15000}
-footer{text-align:center;padding:25px;background:#111;border-top:1px solid #1f1f1f;color:#777}
-@keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){.hero h2{font-size:32px}nav a{margin:0 10px}header{flex-direction:column}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mohamed Hassan - Hardware, Embedded & PCB Design Portfolio. Projects in robotics, motor control, PLC monitoring, and PCB design." />
+  <title>Mohamed Hassan | Hardware Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg: #0a0a0a;
+      --panel: #141414;
+      --text: #ffffff;
+      --muted: #b9b9b9;
+      --muted2:#9a9a9a;
+      --border:#1f1f1f;
+      --accent:#00f7ff;
+      --shadow: rgba(0,247,255,.22);
+      --headerBg: rgba(15,15,15,.92);
+    }
+
+    .theme-light{
+      --bg: #f5f5f7;
+      --panel: #ffffff;
+      --text: #111111;
+      --muted: #444;
+      --muted2:#666;
+      --border:#e6e6e6;
+      --accent:#0066ff;
+      --shadow: rgba(0,102,255,.20);
+      --headerBg: rgba(255,255,255,.85);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      transition:.25s ease;
+      overflow-x:hidden;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:18px 8%;
+      background:var(--headerBg);
+      backdrop-filter: blur(10px);
+      position:fixed;
+      width:100%;
+      top:0;
+      z-index:1000;
+      border-bottom:1px solid var(--border);
+      transition:.25s ease;
+    }
+
+    header h1{
+      color:var(--accent);
+      letter-spacing:2px;
+      font-size:20px;
+      user-select:none;
+    }
+
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:var(--muted);
+      transition:.25s ease;
+      font-weight:500;
+      padding:8px 10px;
+      border-radius:10px;
+      outline:none;
+    }
+    nav a:hover{ color:var(--accent); }
+
+    nav a.active{
+      color:var(--text);
+      background: rgba(0, 247, 255, 0.12);
+      border: 1px solid rgba(0, 247, 255, 0.22);
+    }
+    .theme-light nav a.active{
+      background: rgba(0, 102, 255, 0.10);
+      border: 1px solid rgba(0, 102, 255, 0.22);
+    }
+
+    main{
+      padding-top:110px; /* مهم لتجنب قص المحتوى بسبب الـ header fixed */
+    }
+
+    section{
+      padding:85px 8% 85px;
+      min-height: calc(100vh - 110px);
+      display:none;
+      animation:fadeIn .6s ease;
+      scroll-margin-top:110px;
+    }
+
+    #home{ display:block; }
+
+    .hero{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:18px;
+    }
+
+    .hero h2{
+      font-size:48px;
+      line-height:1.15;
+    }
+
+    .hero span{
+      color:var(--accent);
+      text-shadow:0 0 14px var(--accent);
+    }
+
+    .hero p{
+      max-width:850px;
+      line-height:1.75;
+      color:var(--muted);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 22px;
+      background:var(--accent);
+      color:#000;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.25s ease;
+      cursor:pointer;
+      border:none;
+      width:fit-content;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 25px var(--shadow);
+    }
+
+    .btn.secondary{
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(0,247,255,.35);
+    }
+    .theme-light .btn.secondary{
+      border:1px solid rgba(0,102,255,.35);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:26px;
+      margin-top:25px;
+    }
+
+    .card{
+      background:var(--panel);
+      padding:26px;
+      border-radius:18px;
+      border:1px solid var(--border);
+      transition:.25s ease;
+      overflow:hidden;
+      cursor:pointer;
+      position:relative;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      border-color: rgba(0,247,255,.4);
+      box-shadow:0 0 22px var(--shadow);
+    }
+    .theme-light .card:hover{
+      border-color: rgba(0,102,255,.35);
+    }
+
+    .card h4{ margin-bottom:10px; }
+    .card p{ color:var(--muted2); font-size:14px; line-height:1.65; }
+
+    /* ✅ إصلاح نهائي لشكل الـ pills (بدون color-mix) */
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:14px 0 18px;
+      align-items:center;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:600;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--muted);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    }
+    .pill::before{
+      content:"";
+      width:7px;height:7px;
+      border-radius:50%;
+      background: var(--accent);
+      margin-right:8px;
+      box-shadow:0 0 12px rgba(0,247,255,.35);
+      flex:0 0 auto;
+    }
+    .theme-light .pill{
+      background: rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.10);
+      color: var(--muted);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    .theme-light .pill::before{
+      box-shadow:0 0 12px rgba(0,102,255,.20);
+    }
+
+    .progress-bar{
+      background: rgba(255,255,255,0.06);
+      border-radius:999px;
+      overflow:hidden;
+      margin:12px 0 0;
+      height:14px;
+    }
+    .theme-light .progress-bar{ background: rgba(0,0,0,0.06); }
+
+    .progress-inner{
+      height:100%;
+      background:var(--accent);
+      width:0%;
+      border-radius:999px;
+      transition: width 1.1s ease;
+    }
+
+    .content{
+      max-width:980px;
+    }
+
+    .project-page img{
+      width:100%;
+      max-width:980px;
+      margin:18px 0;
+      border-radius:12px;
+      border:1px solid var(--border);
+      display:block;
+    }
+
+    .back-btn{ margin-top:18px; }
+
+    .theme-toggle{
+      position:fixed;
+      bottom:22px;
+      right:22px;
+      padding:12px 14px;
+      background:var(--accent);
+      color:#000;
+      border:none;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+      z-index:15000;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .contact-box{
+      max-width:680px;
+      margin:0 auto;
+      text-align:center;
+      cursor:default;
+    }
+
+    .contact-icons{
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      margin-top:14px;
+    }
+
+    .contact-icons a{
+      width:44px;height:44px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--border);
+      color:var(--text);
+      transition:.25s ease;
+      text-decoration:none;
+      font-size:18px;
+    }
+
+    .contact-icons a:hover{
+      color:#000;
+      background:var(--accent);
+      transform:translateY(-2px);
+      box-shadow:0 0 22px var(--shadow);
+    }
+
+    footer{
+      text-align:center;
+      padding:22px;
+      background: rgba(255,255,255,0.03);
+      border-top:1px solid var(--border);
+      color:var(--muted2);
+    }
+    .theme-light footer{ background: rgba(0,0,0,0.03); }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(22px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    @media(max-width:768px){
+      header{flex-direction:column; align-items:flex-start}
+      .hero h2{font-size:32px}
+      section{padding:70px 7% 80px;}
+    }
+  </style>
 </head>
-<body>
-<button class="toggle-dark" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-<header>
-<h1>Mohamed Hassan</h1>
-<nav>
-<a href="#home" onclick="showSection('home')">Home</a>
-<a href="#skills" onclick="showSection('skills')">Skills</a>
-<a href="#projects" onclick="showSection('projects')">Projects</a>
-<a href="#contact" onclick="showSection('contact')">Contact</a>
-</nav>
-</header>
-<section id="home" class="hero project-page" style="display:block">
-<h2>Hello, I'm <span id="typed"></span></h2>
-<p>Computer Science Student & Hardware-Focused Engineer specialized in Embedded Systems, Robotics, Motor Control, and Industrial Automation.</p>
-<a class="btn" onclick="showSection('projects')">Explore Projects</a>
-<br><br>
-<a href="cv.pdf" class="btn" download>Download CV</a>
-</section>
-<section id="skills" class="project-page">
-<h3>Technical Skills</h3>
-<div class="skills">
-<div class="card"><h4>Programming</h4><div class="progress-bar"><div class="progress-bar-inner" style="width:90%"></div></div></div>
-<div class="card"><h4>Embedded Systems</h4><div class="progress-bar"><div class="progress-bar-inner" style="width:85%"></div></div></div>
-<div class="card"><h4>Robotics & ROS2</h4><div class="progress-bar"><div class="progress-bar-inner" style="width:80%"></div></div></div>
-<div class="card"><h4>Industrial Control</h4><div class="progress-bar"><div class="progress-bar-inner" style="width:75%"></div></div></div>
-</div>
-</section>
-<section id="projects" class="project-page">
-<h3>Hardware & Engineering Projects</h3>
-<div class="projects">
-<div class="card" onclick="showProject('project1')"><h4>5-Axis Robotic Arm</h4><p>Click to see full details.</p></div>
-<div class="card" onclick="showProject('project2')"><h4>DC Motor Torque Control</h4><p>Click to see full details.</p></div>
-<div class="card" onclick="showProject('project3')"><h4>252 Battery Monitoring</h4><p>Click to see full details.</p></div>
-</div>
-</section>
-<!-- Project Pages -->
-<section id="project1" class="project-page">
-<h2>5-Axis Robotic Arm Design</h2>
-<img src="arm.jpg" alt="5-Axis Robotic Arm">
-<p>Designed a 5-axis robotic arm using stepper motors with 20cm joint spacing and 100g payload. Full control system implemented, including precise movements and robotics programming. Integrated embedded sensors and feedback loops for accurate positioning.</p>
-<a class="btn back-btn" onclick="showSection('projects')">Back to Projects</a>
-</section>
-<section id="project2" class="project-page">
-<h2>DC Motor Torque Control System</h2>
-<img src="motor.jpg" alt="DC Motor Control">
-<p>Developed a DC motor control system maintaining constant torque while allowing adjustable speed. Implemented feedback control, PID algorithms, and monitoring circuits for stability and performance.</p>
-<a class="btn back-btn" onclick="showSection('projects')">Back to Projects</a>
-</section>
-<section id="project3" class="project-page">
-<h2>252 Battery Monitoring using PLC</h2>
-<img src="batteries.jpg" alt="PLC Battery Monitoring">
-<p>Engineered a scalable PLC system to monitor 252 batteries using limited inputs. Implemented multiplexing techniques, voltage checks, and alert systems for efficient industrial monitoring.</p>
-<a class="btn back-btn" onclick="showSection('projects')">Back to Projects</a>
-</section>
-<section id="contact" class="project-page">
-<h3>Contact</h3>
-<div class="card" style="max-width:600px;margin:auto;text-align:center;">
-<p>Let's Connect</p>
-<div class="contact-icons">
-<a href="https://github.com/Mohamedhassan2233" target="_blank"><i class="fab fa-github"></i></a>
-<a href="https://www.linkedin.com/in/mohamed-hassan" target="_blank"><i class="fab fa-linkedin"></i></a>
-</div>
-<br>
-<a href="https://github.com/Mohamedhassan2233" target="_blank" class="btn">Visit My GitHub</a>
-</div>
-</section>
-<footer>
-© 2026 Mohamed Hassan | Hardware & Embedded Engineer Portfolio
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-AOS.init();
-let i=0, txt='Hardware & Embedded Engineer.', speed=100;
-function typeWriter(){if(i<txt.length){document.getElementById('typed').innerHTML+=txt.charAt(i);i++;setTimeout(typeWriter,speed);}}
-window.onload=typeWriter;
-function showSection(id){document.querySelectorAll('.project-page').forEach(s=>s.style.display='none');document.getElementById(id).style.display='block';}
-function showProject(id){showSection(id);}
-function toggleDarkMode(){document.body.classList.toggle('light');if(document.body.style.backgroundColor=='rgb(10, 10, 10)'){document.body.style.backgroundColor='#f4f4f4';document.body.style.color='#000';}else{document.body.style.backgroundColor='#0a0a0a';document.body.style.color='#fff';}}
-</script>
+
+<body class="theme-dark">
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <i class="fa-solid fa-moon"></i>
+    <span>Theme</span>
+  </button>
+
+  <header>
+    <h1>Mohamed Hassan</h1>
+    <nav aria-label="Main navigation">
+      <a href="#home" data-target="home" class="active">Home</a>
+      <a href="#skills" data-target="skills">Skills</a>
+      <a href="#projects" data-target="projects">Projects</a>
+      <a href="#contact" data-target="contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home -->
+    <section id="home" class="project-page hero">
+      <div class="content" data-aos="fade-up">
+        <h2>Hello, I'm <span id="typed"></span></h2>
+        <p>
+          Computer Science Student & Hardware-Focused Engineer specialized in Embedded Systems, Robotics,
+          Motor Control, Industrial Automation, and <strong>PCB Design (Altium)</strong>.
+        </p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;">
+          <button class="btn" id="exploreBtn">
+            <i class="fa-solid fa-diagram-project"></i> Explore Projects
+          </button>
+
+          <a class="btn secondary" href="cv.pdf" download>
+            <i class="fa-solid fa-file-arrow-down"></i> Download CV
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="project-page">
+      <div class="content">
+        <h3 data-aos="fade-right">Technical Skills</h3>
+
+        <div class="grid">
+          <div class="card" data-aos="zoom-in">
+            <h4>Programming</h4>
+            <p>C++ / Java, problem solving, data structures, basic OOP, and clean code practices.</p>
+            <div class="progress-bar"><div class="progress-inner" data-progress="90"></div></div>
+          </div>
+
+          <div class="card" data-aos="zoom-in" data-aos-delay="80">
+            <h4>Embedded Systems</h4>
+            <p>MCUs, sensors, drivers, debugging, and reliable system integration.</p>
+            <div class="progress-bar"><div class="progress-inner" data-progress="85"></div></div>
+          </div>
+
+          <div class="card" data-aos="zoom-in" data-aos-delay="160">
+            <h4>Robotics & ROS2</h4>
+            <p>Kinematics basics, motion planning concepts, actuators, and integration workflow.</p>
+            <div class="progress-bar"><div class="progress-inner" data-progress="80"></div></div>
+          </div>
+
+          <div class="card" data-aos="zoom-in" data-aos-delay="240">
+            <h4>Industrial Control</h4>
+            <p>PLC logic, monitoring/alarms, and scalable industrial monitoring design.</p>
+            <div class="progress-bar"><div class="progress-inner" data-progress="75"></div></div>
+          </div>
+
+          <!-- ✅ NEW: PCB Design -->
+          <div class="card" data-aos="zoom-in" data-aos-delay="320">
+            <h4>PCB Design</h4>
+            <p>Altium Designer, schematic capture, PCB layout, ERC/DRC, BOM, Gerber & fabrication outputs.</p>
+            <div class="progress-bar"><div class="progress-inner" data-progress="82"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="project-page">
+      <div class="content">
+        <h3 data-aos="fade-right">Hardware & Engineering Projects</h3>
+
+        <div class="grid">
+          <div class="card" data-aos="fade-up" onclick="showSection('project1')" role="button" aria-label="Open 5-Axis Robotic Arm project">
+            <h4>5-Axis Robotic Arm</h4>
+            <p>Mechanical design + stepper control + motion accuracy. Click to see full details.</p>
+            <div class="meta">
+              <span class="pill">Robotics</span>
+              <span class="pill">Stepper Motors</span>
+              <span class="pill">Control</span>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-delay="90" onclick="showSection('project2')" role="button" aria-label="Open DC Motor Torque Control project">
+            <h4>DC Motor Torque Control</h4>
+            <p>Maintain constant torque with adjustable speed using feedback and PID. Click for details.</p>
+            <div class="meta">
+              <span class="pill">PID</span>
+              <span class="pill">Current Sensing</span>
+              <span class="pill">PWM</span>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-delay="180" onclick="showSection('project3')" role="button" aria-label="Open 252 Battery Monitoring project">
+            <h4>252 Battery Monitoring (PLC)</h4>
+            <p>Scalable monitoring using limited PLC inputs with multiplexing + alarms. Click for details.</p>
+            <div class="meta">
+              <span class="pill">PLC</span>
+              <span class="pill">Multiplexing</span>
+              <span class="pill">Industrial</span>
+            </div>
+          </div>
+
+          <!-- ✅ NEW: PCB Project -->
+          <div class="card" data-aos="fade-up" data-aos-delay="270" onclick="showSection('project4')" role="button" aria-label="Open PCB Design project">
+            <h4>Smart Power Supply PCB (Altium)</h4>
+            <p>PCB design for power & monitoring system with protection, stable routing, and fabrication-ready outputs.</p>
+            <div class="meta">
+              <span class="pill">Altium</span>
+              <span class="pill">DRC</span>
+              <span class="pill">Gerbers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project 1 -->
+    <section id="project1" class="project-page">
+      <div class="content">
+        <h2 data-aos="fade-up">5-Axis Robotic Arm Design</h2>
+
+        <div class="meta" data-aos="fade-up" data-aos-delay="80">
+          <span class="pill">Payload: ~100g</span>
+          <span class="pill">Joint Spacing: ~20cm</span>
+          <span class="pill">Stepper-based</span>
+          <span class="pill">Feedback-ready</span>
+        </div>
+
+        <img src="arm.jpg" alt="5-Axis Robotic Arm" loading="lazy" />
+
+        <p data-aos="fade-up">
+          Designed a 5-axis robotic arm focusing on mechanical stability, repeatable motion, and reliable actuator control.
+          Implemented stepper motor control with smooth acceleration/deceleration to reduce vibration and missed steps.
+          The system architecture was planned to support sensors (endstops / homing) for improved accuracy.
+        </p>
+
+        <p data-aos="fade-up" data-aos-delay="80">
+          <strong>Highlights:</strong><br>
+          • Mechanical trade-offs: torque per joint, arm reach vs payload, and cable management.<br>
+          • Control: homing sequence, joint limits, and multi-axis trajectory planning.<br>
+          • Reliability: power distribution planning and protection considerations.
+        </p>
+
+        <button class="btn back-btn" onclick="showSection('projects')">
+          <i class="fa-solid fa-arrow-left"></i> Back to Projects
+        </button>
+      </div>
+    </section>
+
+    <!-- Project 2 -->
+    <section id="project2" class="project-page">
+      <div class="content">
+        <h2 data-aos="fade-up">DC Motor Torque Control System</h2>
+
+        <div class="meta" data-aos="fade-up" data-aos-delay="80">
+          <span class="pill">Closed-loop</span>
+          <span class="pill">PID Tuning</span>
+          <span class="pill">Monitoring</span>
+          <span class="pill">Protection</span>
+        </div>
+
+        <img src="motor.jpg" alt="DC Motor Control" loading="lazy" />
+
+        <p data-aos="fade-up">
+          Developed a DC motor control system that maintains approximately constant torque while allowing adjustable speed.
+          Used feedback signals to stabilize output under load variations with a PID-based control loop and PWM stage.
+        </p>
+
+        <p data-aos="fade-up" data-aos-delay="80">
+          <strong>Highlights:</strong><br>
+          • Torque estimation using current sensing + filtering to reduce noise.<br>
+          • Controller safety: limits + anti-windup considerations for stable response.<br>
+          • Practical testing: step-load response, overshoot checks, and tuning for stability.
+        </p>
+
+        <button class="btn back-btn" onclick="showSection('projects')">
+          <i class="fa-solid fa-arrow-left"></i> Back to Projects
+        </button>
+      </div>
+    </section>
+
+    <!-- Project 3 -->
+    <section id="project3" class="project-page">
+      <div class="content">
+        <h2 data-aos="fade-up">252 Battery Monitoring using PLC</h2>
+
+        <div class="meta" data-aos="fade-up" data-aos-delay="80">
+          <span class="pill">252 Channels</span>
+          <span class="pill">Limited Inputs</span>
+          <span class="pill">Alarms</span>
+          <span class="pill">Scalable</span>
+        </div>
+
+        <img src="batteries.jpg" alt="PLC Battery Monitoring" loading="lazy" />
+
+        <p data-aos="fade-up">
+          Engineered a scalable PLC-based monitoring solution to supervise 252 battery voltages using limited PLC inputs.
+          Applied multiplexing/selection logic to scan battery groups, detect abnormal thresholds, and trigger alarms efficiently.
+        </p>
+
+        <p data-aos="fade-up" data-aos-delay="80">
+          <strong>Highlights:</strong><br>
+          • Scanning strategy: grouped measurements + timing plan to avoid false alarms.<br>
+          • Threshold logic: low-voltage/over-voltage alarms with debounce/hysteresis.<br>
+          • Industrial readiness: maintainable channel mapping and wiring discipline.
+        </p>
+
+        <button class="btn back-btn" onclick="showSection('projects')">
+          <i class="fa-solid fa-arrow-left"></i> Back to Projects
+        </button>
+      </div>
+    </section>
+
+    <!-- ✅ Project 4 (PCB) -->
+    <section id="project4" class="project-page">
+      <div class="content">
+        <h2 data-aos="fade-up">PCB Design – Smart Power & Monitoring Board</h2>
+
+        <div class="meta" data-aos="fade-up" data-aos-delay="80">
+          <span class="pill">Altium Designer</span>
+          <span class="pill">Schematic + Layout</span>
+          <span class="pill">ERC / DRC</span>
+          <span class="pill">Gerber + BOM</span>
+        </div>
+
+        <img src="pcb.jpg" alt="PCB Design in Altium" loading="lazy" />
+
+        <p data-aos="fade-up">
+          Designed a fabrication-ready PCB in Altium Designer starting from schematic capture to final layout.
+          Focused on stable power distribution, noise reduction, and clean routing practices for a reliable hardware system.
+        </p>
+
+        <p data-aos="fade-up" data-aos-delay="80">
+          <strong>Highlights:</strong><br>
+          • Full schematic: regulators, connectors, sensing blocks, and protection elements.<br>
+          • Layout practices: decoupling placement, ground strategy, wide power traces, and clean routing.<br>
+          • Validation: footprint checks + ERC/DRC + manufacturing outputs (Gerber / NC Drill).
+        </p>
+
+        <button class="btn back-btn" onclick="showSection('projects')">
+          <i class="fa-solid fa-arrow-left"></i> Back to Projects
+        </button>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="project-page">
+      <div class="content">
+        <h3 data-aos="fade-right">Contact</h3>
+
+        <div class="card contact-box" data-aos="zoom-in">
+          <p style="font-weight:700;">Let's Connect</p>
+
+          <div class="contact-icons">
+            <a href="https://github.com/Mohamedhassan2233" target="_blank" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/mohamed-hassan" target="_blank" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+
+          <div style="margin-top:18px;">
+            <a class="btn" href="https://github.com/Mohamedhassan2233" target="_blank">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit My GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Mohamed Hassan | Hardware & Embedded Engineer Portfolio
+  </footer>
+
+  <!-- AOS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // --- AOS ---
+    AOS.init({ duration: 700, once: true });
+
+    // --- Typed Effect ---
+    const typedEl = document.getElementById('typed');
+    const txt = "Hardware, Embedded & PCB Designer.";
+    let i = 0;
+    const speed = 70;
+
+    function typeWriter(){
+      if(i < txt.length){
+        typedEl.textContent += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    window.addEventListener("load", typeWriter);
+
+    // --- Sections show/hide ---
+    const sections = [...document.querySelectorAll("main section")];
+    const navLinks = [...document.querySelectorAll("nav a")];
+
+    function setActiveNav(id){
+      navLinks.forEach(a => a.classList.toggle("active", a.dataset.target === id));
+    }
+
+    function showSection(id){
+      sections.forEach(s => s.style.display = "none");
+      const el = document.getElementById(id);
+      if(el) el.style.display = "block";
+
+      // لو داخل مشروع، خليه يحدد projects في الناف
+      const isProject = ["project1","project2","project3","project4"].includes(id);
+      setActiveNav(isProject ? "projects" : id);
+
+      // Animate skill bars when opening skills
+      if(id === "skills"){
+        document.querySelectorAll(".progress-inner").forEach(bar => {
+          const target = bar.getAttribute("data-progress") || "0";
+          bar.style.width = target + "%";
+        });
+      }
+
+      // Scroll to top for better UX
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Nav click handler
+    navLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = link.dataset.target;
+        showSection(target);
+        history.replaceState(null, "", "#" + target);
+      });
+    });
+
+    // Explore button
+    document.getElementById("exploreBtn").addEventListener("click", () => showSection("projects"));
+
+    // Handle direct hash on load
+    window.addEventListener("load", () => {
+      const hash = location.hash.replace("#", "");
+      if(hash && document.getElementById(hash)) showSection(hash);
+      else showSection("home");
+    });
+
+    // --- Theme Toggle (Dark/Light) ---
+    const themeToggle = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("theme");
+
+    if(savedTheme === "light"){
+      document.body.classList.remove("theme-dark");
+      document.body.classList.add("theme-light");
+    }
+
+    function updateThemeIcon(){
+      const isLight = document.body.classList.contains("theme-light");
+      themeToggle.querySelector("i").className = isLight ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    }
+    updateThemeIcon();
+
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("theme-light");
+      const isLight = document.body.classList.contains("theme-light");
+      localStorage.setItem("theme", isLight ? "light" : "dark");
+      updateThemeIcon();
+    });
+  </script>
+
 </body>
 </html>
