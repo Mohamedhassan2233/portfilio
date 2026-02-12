@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mohamed Hassan - Hardware, Embedded & PCB Design Portfolio." />
+  <title>Mohamed Hassan | Hardware Portfolio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --panel:#141414;
+      --text:#ffffff;
+      --muted:#b9b9b9;
+      --muted2:#9a9a9a;
+      --border:#1f1f1f;
+      --accent:#00f7ff;
+      --shadow:rgba(0,247,255,.22);
+      --headerBg:rgba(15,15,15,.92);
+    }
+
+    body.theme-light{
+      --bg:#f5f5f7;
+      --panel:#ffffff;
+      --text:#111111;
+      --muted:#444444;
+      --muted2:#666666;
+      --border:#e6e6e6;
+      --accent:#0066ff;
+      --shadow:rgba(0,102,255,.20);
+      --headerBg:rgba(255,255,255,.86);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);transition:.25s ease;overflow-x:hidden}
+
+    header{
+      display:flex;justify-content:space-between;align-items:center;gap:16px;
+      padding:18px 8%;background:var(--headerBg);backdrop-filter:blur(10px);
+      position:fixed;width:100%;top:0;z-index:1000;border-bottom:1px solid var(--border);
+    }
+
+    header h1{color:var(--accent);letter-spacing:2px;font-size:20px;user-select:none}
+
+    nav{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    nav a{
+      text-decoration:none;color:var(--muted);transition:.25s ease;font-weight:500;
+      padding:8px 10px;border-radius:10px;
+    }
+    nav a:hover{color:var(--accent)}
+    nav a.active{color:var(--text);background:rgba(0,247,255,.12);border:1px solid rgba(0,247,255,.22)}
+    body.theme-light nav a.active{background:rgba(0,102,255,.10);border:1px solid rgba(0,102,255,.22)}
+
+    main{padding-top:110px}
+
+    section{
+      padding:85px 8% 85px;
+      min-height:calc(100vh - 110px);
+      display:none;
+      animation:fadeIn .6s ease;
+      scroll-margin-top:110px;
+    }
+    #home{display:block}
+
+    .hero{display:flex;flex-direction:column;justify-content:center;gap:18px}
+    .hero h2{font-size:48px;line-height:1.15}
+    .hero span{color:var(--accent);text-shadow:0 0 14px var(--accent)}
+    .hero p{max-width:850px;line-height:1.75;color:var(--muted)}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 22px;background:var(--accent);color:#000;border-radius:999px;
+      text-decoration:none;font-weight:700;transition:.25s ease;cursor:pointer;border:none;
+      width:fit-content;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 0 25px var(--shadow)}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;margin-top:25px}
+
+    .card{
+      background:var(--panel);padding:26px;border-radius:18px;border:1px solid var(--border);
+      transition:.25s ease;cursor:pointer;position:relative;
+    }
+    .card:hover{transform:translateY(-8px);border-color:rgba(0,247,255,.4);box-shadow:0 0 22px var(--shadow)}
+    body.theme-light .card:hover{border-color:rgba(0,102,255,.35)}
+    .card h4{margin-bottom:10px}
+    .card p{color:var(--muted2);font-size:14px;line-height:1.65}
+
+    .meta{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 18px;align-items:center}
+    .pill{
+      display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:999px;
+      font-size:12px;font-weight:600;letter-spacing:.2px;white-space:nowrap;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--muted);
+      box-shadow:0 6px 18px rgba(0,0,0,.18);
+    }
+    .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:8px;box-shadow:0 0 12px rgba(0,247,255,.35);flex:0 0 auto}
+    body.theme-light .pill{background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.10);color:var(--muted);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+
+    .progress-bar{background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;margin:12px 0 0;height:14px}
+    body.theme-light .progress-bar{background:rgba(0,0,0,.06)}
+    .progress-inner{height:100%;background:var(--accent);width:0%;border-radius:999px;transition:width 1.1s ease}
+
+    /* PCB Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:18px}
+    .gallery figure{background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .gallery img{width:100%;display:block}
+    .gallery figcaption{padding:10px 12px;color:var(--muted2);font-size:13px;line-height:1.5}
+
+    .theme-toggle{
+      position:fixed;bottom:22px;right:22px;padding:12px 14px;background:var(--accent);color:#000;
+      border:none;border-radius:999px;font-weight:800;cursor:pointer;z-index:15000;
+      display:flex;gap:10px;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+
+    footer{text-align:center;padding:22px;background:rgba(255,255,255,.03);border-top:1px solid var(--border);color:var(--muted2)}
+    body.theme-light footer{background:rgba(0,0,0,.03)}
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:768px){header{flex-direction:column;align-items:flex-start}.hero h2{font-size:32px}section{padding:70px 7% 80px}}
+  </style>
+</head>
+
+<body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <i class="fa-solid fa-moon"></i><span>Theme</span>
+  </button>
+
+  <header>
+    <h1>Mohamed Hassan</h1>
+    <nav aria-label="Main navigation">
+      <a href="#home" data-target="home">Home</a>
+      <a href="#skills" data-target="skills">Skills</a>
+      <a href="#projects" data-target="projects">Projects</a>
+      <a href="#contact" data-target="contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home -->
+    <section id="home" class="project-page hero">
+      <div class="content" data-aos="fade-up">
+        <h2>Hello, I'm <span id="typed"></span></h2>
+        <p>
+          Computer Science Student & Hardware-Focused Engineer specialized in Embedded Systems, Robotics,
+          Motor Control, Industrial Automation, and <strong>PCB Design (Altium)</strong>.
+        </p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;">
+          <button class="btn" id="exploreBtn"><i class="fa-solid fa-diagram-project"></i> Explore Projects</button>
+          <a class="btn" href="cv.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="project-page">
+      <div class="content">
+        <h3 data-aos="fade-right">Technical Skills</h3>
+        <div class="grid">
+          <div class="card" data-aos="zoom-in">
+            <h4>Programming</h4>
+            <p>C++ / Java, problem solving, data structures.</p>
+            <div class="progress-bar"><div class="progress-inner" data-progress="90"></div></div>
+          </div>
+          <div class="card" data-aos="zoom-in" data-aos-delay="80">
+            <h4>Embedded Systems</h4>
+            <p>MCUs, sensors, drivers, debugging.</p>
+            <div class="progress-bar"><div class="progress-inner" data-progress="85"></div></div>
+          </div>
+          <div class="card" data-aos="zoom-in" data-aos-delay="160">
+            <h4>Robotics & ROS2</h4>
+            <p>Kinematics, motion planning, actuators.</p>
+            <div class="progress-bar"><div class="progress-inner" data-progress="80"></div></div>
+          </div>
+          <div class="card" data-aos="zoom-in" data-aos-delay="240">
+            <h4>Industrial Control</h4>
+            <p>PLC logic, monitoring/alarms.</p>
+            <div class="progress-bar"><div class="progress-inner" data-progress="75"></div></div>
+          </div>
+          <div class="card" data-aos="zoom-in" data-aos-delay="320">
+            <h4>PCB Design</h4>
+            <p>Altium, schematic capture, layout, ERC/DRC, BOM, Gerbers.</p>
+            <div class="progress-bar"><div class="progress-inner" data-progress="82"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="project-page">
+      <div class="content">
+        <h3 data-aos="fade-right">Hardware & Engineering Projects</h3>
+        <div class="grid">
+          <div class="card" data-aos="fade-up" onclick="showSection('project1')" role="button" aria-label="Open Robotic Arm project">
+            <h4>5-Axis Robotic Arm</h4>
+            <p>Mechanical design + stepper control + motion accuracy.</p>
+          </div>
+          <div class="card" data-aos="fade-up" data-aos-delay="90" onclick="showSection('project2')" role="button" aria-label="Open Motor Control project">
+            <h4>DC Motor Torque Control</h4>
+            <p>Control concepts (PWM/PID) and prototyping workflow.</p>
+          </div>
+          <div class="card" data-aos="fade-up" data-aos-delay="180" onclick="showSection('project3')" role="button" aria-label="Open Battery Monitoring project">
+            <h4>252 Battery Monitoring (PLC)</h4>
+            <p>Scalable monitoring with threshold detection + alarms.</p>
+          </div>
+          <div class="card" data-aos="fade-up" data-aos-delay="270" onclick="showSection('project4')" role="button" aria-label="Open PCB project">
+            <h4>PCB Design – Smart Power Supply (TPS5430)</h4>
+            <p>All related images are grouped here (PCB + simulations).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project 1 (NO IMAGE) -->
+    <section id="project1" class="project-page">
+      <div class="content">
+        <h2 data-aos="fade-up">5-Axis Robotic Arm Design</h2>
+        <p data-aos="fade-up" data-aos-delay="80">
+          Designed a 5-axis robotic arm focusing on mechanical stability, repeatable motion, and reliable actuator control.
+          Implemented stepper control concepts and planned homing/limits for safer operation.
+        </p>
+        <button class="btn" onclick="showSection('projects')"><i class="fa-solid fa-arrow-left"></i> Back to Projects</button>
+      </div>
+    </section>
+
+    <!-- Project 2 (NO IMAGE) -->
+    <section id="project2" class="project-page">
+      <div class="content">
+        <h2 data-aos="fade-up">DC Motor Torque Control System</h2>
+        <p data-aos="fade-up" data-aos-delay="80">
+          Developed motor control concepts aiming for stable torque under varying load while allowing adjustable speed.
+          Focused on PWM control, feedback loop basics, and tuning workflow.
+        </p>
+        <button class="btn" onclick="showSection('projects')"><i class="fa-solid fa-arrow-left"></i> Back to Projects</button>
+      </div>
+    </section>
+
+    <!-- Project 3 (NO IMAGE) -->
+    <section id="project3" class="project-page">
+      <div class="content">
+        <h2 data-aos="fade-up">252 Battery Monitoring using PLC</h2>
+        <p data-aos="fade-up" data-aos-delay="80">
+          Engineered a scalable monitoring approach for 252 batteries using limited PLC inputs.
+          Implemented threshold logic and alarm triggering strategy for reliable industrial monitoring.
+        </p>
+        <button class="btn" onclick="showSection('projects')"><i class="fa-solid fa-arrow-left"></i> Back to Projects</button>
+      </div>
+    </section>
+
+    <!-- Project 4 (PCB ONLY: ALL IMAGES HERE) -->
+    <section id="project4" class="project-page">
+      <div class="content">
+        <h2 data-aos="fade-up">PCB Design – Smart Power Supply Board (TPS5430)</h2>
+
+        <div class="meta" data-aos="fade-up" data-aos-delay="80">
+          <span class="pill">Altium</span>
+          <span class="pill">Layout</span>
+          <span class="pill">ERC/DRC</span>
+          <span class="pill">Gerber</span>
+        </div>
+
+        <p data-aos="fade-up" data-aos-delay="120">
+          Fabrication-ready PCB designed in Altium Designer from schematic capture to final layout.
+          Below is a single gallery that includes ALL your images (PCB + supporting Proteus simulations).
+        </p>
+
+        <div class="gallery" data-aos="fade-up" data-aos-delay="160">
+          <figure>
+            <img src="assets/img/pcb_tps5430_layout.jpg" alt="TPS5430 PCB Layout" loading="lazy">
+            <figcaption>PCB Layout (TPS5430) – placement, routing, and board outline.</figcaption>
+          </figure>
+
+          <figure>
+            <img src="assets/img/opamp_relay_proteus.jpg" alt="Proteus comparator + relay circuit" loading="lazy">
+            <figcaption>Proteus Simulation – comparator/threshold + relay driving (validation evidence).</figcaption>
+          </figure>
+
+          <figure>
+            <img src="assets/img/555_timer_proteus.jpg" alt="Proteus 555 timing/PWM prototype" loading="lazy">
+            <figcaption>Proteus Simulation – 555 timing/PWM prototype (testing workflow).</figcaption>
+          </figure>
+        </div>
+
+        <button class="btn" onclick="showSection('projects')"><i class="fa-solid fa-arrow-left"></i> Back to Projects</button>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="project-page">
+      <div class="content">
+        <h3 data-aos="fade-right">Contact</h3>
+        <div class="card" style="max-width:680px;margin:0 auto;text-align:center;cursor:default" data-aos="zoom-in">
+          <p style="font-weight:700;">Let's Connect</p>
+          <div style="display:flex;gap:16px;justify-content:center;margin-top:14px;flex-wrap:wrap;">
+            <a class="btn" style="padding:10px 16px;" href="https://github.com/Mohamedhassan2233" target="_blank" rel="noreferrer"><i class="fab fa-github"></i> GitHub</a>
+            <a class="btn" style="padding:10px 16px;" href="https://www.linkedin.com/in/mohamed-hassan" target="_blank" rel="noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Mohamed Hassan | Hardware & Embedded Engineer Portfolio</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // AOS
+    AOS.init({ duration: 700, once: true });
+
+    // Typed effect
+    const typedEl = document.getElementById('typed');
+    const txt = 'Hardware, Embedded & PCB Designer.';
+    let i = 0;
+    function typeWriter(){
+      if(i < txt.length){
+        typedEl.textContent += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, 70);
+      }
+    }
+    window.addEventListener('load', typeWriter);
+
+    // SPA sections
+    const sections = [...document.querySelectorAll('main section')];
+    const navLinks = [...document.querySelectorAll('nav a')];
+
+    function setActiveNav(id){
+      navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === id));
+    }
+
+    function showSection(id){
+      sections.forEach(s => s.style.display = 'none');
+      const el = document.getElementById(id);
+      if(el) el.style.display = 'block';
+
+      const isProject = ['project1','project2','project3','project4'].includes(id);
+      setActiveNav(isProject ? 'projects' : id);
+
+      if(id === 'skills'){
+        document.querySelectorAll('.progress-inner').forEach(b => {
+          b.style.width = (b.dataset.progress || 0) + '%';
+        });
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    window.showSection = showSection;
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        showSection(link.dataset.target);
+        history.replaceState(null, '', '#' + link.dataset.target);
+      });
+    });
+
+    document.getElementById('exploreBtn').addEventListener('click', () => showSection('projects'));
+
+    // Theme
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'light') document.body.classList.add('theme-light');
+
+    function updateThemeIcon(){
+      const isLight = document.body.classList.contains('theme-light');
+      themeToggle.querySelector('i').className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+    updateThemeIcon();
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('theme-light');
+      localStorage.setItem('theme', document.body.classList.contains('theme-light') ? 'light' : 'dark');
+      updateThemeIcon();
+    });
+
+    // Load by hash
+    window.addEventListener('load', () => {
+      const h = location.hash.replace('#','');
+      if(h && document.getElementById(h)) showSection(h);
+      else showSection('home');
+    });
+
+    // Debug missing images
+    document.querySelectorAll('img').forEach(img => img.addEventListener('error', () => console.warn('Image not found:', img.getAttribute('src'))));
+  </script>
+</body>
+</html>
+
+# Portfolio Site (Ready)
+
+## How to run
+1) Keep this structure:
+   - index.html
+   - assets/img/*.jpg
+2) Open index.html, or use VS Code Live Server.
+
+## Images
+All images are shown only inside the PCB project (Project 4).
+Other projects intentionally have no images.
